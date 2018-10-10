@@ -15,3 +15,6 @@ class Student:
         self.mostRecentTerm = row[6]
         self.gpa = float(row[7])
        
+    def __str__(self):
+        return 'ID '+self.id+'First Name '+self.firstName+'Last Name '+self.lastName
+    
