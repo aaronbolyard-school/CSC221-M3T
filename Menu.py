@@ -6,34 +6,48 @@ Created on Mon Oct  8 13:06:22 2018
 Aaron Bolyard
 Grace Rowse
 """
+
+def action_load_student_csv():
+  pass
+
+def action_list_all_students():
+  pass
+
+def action_list_programs():
+  pass
+
+def action_quit():
+  exit()
+
+ACTIONS = {
+  'A': action_load_student_csv,
+  'B': action_list_all_students,
+  'C': action_list_programs,
+  'Q': action_quit
+}
+
+def getAction():
+  while True:
+    print("A) Load Students from CSV")
+    print("B) List All Students")
+    print("C) List Students by Program")
+    print("Q) Quit")
+
+    userInput = input("Enter action: ").upper()
+    action = ACTIONS.get(userInput, None)
+
+    if action == None:
+      print("Please enter a valid option.")
+    else:
+      return action
+
 def main():
-   search = input('Do you want to perform a data search? Y or N?')
-    #gpaSearch = input('Do you want to display by student GPA? Y or N') 
-    #programSearch = input('Do you want to display by start date?')
-   start = input('Press A + enter to search by name or B + enter to search by Last name')
-    
-   if search == 'Y':
-       start()
-   elif search == 'N':
-       print('Goodbye')
-   else:
-       print('Please enter a valid option')
+  while True:
+    action = getAction()
 
-   if start =='A':
-       print('x')
-   if start == 'B':
-        print('y')
-   else:
-       print('Please enter a valid option')
+    print()
+    action()
+    print()
 
-main()
-        
-   
-    
-        
-    
-
-            
-            
-        
-        
+if __name__ == '__main__':
+  main()
