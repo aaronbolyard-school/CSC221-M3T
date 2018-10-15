@@ -7,21 +7,30 @@ Aaron Bolyard
 Grace Rowse
 """
 
+import File
+
 class Application:
-    def __init__(self):
-        self.students = None
+  def __init__(self):
+    self.students = None
 
-def action_load_students_csv(app):
-    app.students = file.readcsv(filename)
+def action_load_student_csv(app):
+  try:
+    filename = input("Enter a filename: ")
+    app.students = File.readCSV(filename)
+  except Exception as e:
+    print("Couldn't load students:", e)
 
-def action_list_all_students():
+def action_list_all_students(app):
+  if not app.students:
+    print("Please load the students CSV first.")
+  else:
     for student in app.students:
-        print(student)
+      print(student)
 
-def action_list_programs():
+def action_list_programs(app):
   pass
 
-def action_quit():
+def action_quit(app):
   exit()
 
 ACTIONS = {
@@ -47,11 +56,13 @@ def getAction():
       return action
 
 def main():
+  app = Application()
+
   while True:
     action = getAction()
 
     print()
-    action()
+    action(app)
     print()
 
 if __name__ == '__main__':
