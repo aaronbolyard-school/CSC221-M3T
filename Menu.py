@@ -7,11 +7,16 @@ Aaron Bolyard
 Grace Rowse
 """
 
-def action_load_student_csv():
-  pass
+class Application:
+    def __init__(self):
+        self.students = None
+
+def action_load_students_csv(app):
+    app.students = file.readcsv(filename)
 
 def action_list_all_students():
-  pass
+    for student in app.students:
+        print(student)
 
 def action_list_programs():
   pass
