@@ -17,7 +17,6 @@ def countLinesInFile(filename):
 	with open(filename, 'r') as file:
 		numLines = 0
 		for line in file:
-			print(line)
 			numLines += 1
 
 	return numLines
