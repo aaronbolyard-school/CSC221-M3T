@@ -2,17 +2,23 @@
 """
 Created on Mon Oct  8 13:06:22 2018
 
-@author: n_zwan
+Nick Zwan
 Aaron Bolyard
 Grace Rowse
 """
 
 import File
+""" 
+Creates a class called Application.
+"""
 
 class Application:
   def __init__(self):
     self.students = None
-
+"""
+Loads file from user input. 
+if incorrect prints exception.
+"""
 def action_load_student_csv(app):
   try:
     filename = input("Enter a filename: ")
@@ -20,6 +26,9 @@ def action_load_student_csv(app):
   except Exception as e:
     print("Couldn't load students:", e)
 
+"""
+Loads students csv file and prints student info.
+"""
 def action_list_all_students(app):
   if not app.students:
     print("Please load the students CSV first.")
@@ -27,12 +36,21 @@ def action_list_all_students(app):
     for student in app.students:
       print(student)
 
+"""
+Generates program list.
+"""
 def action_list_programs(app):
   pass
 
+"""
+Allows user to exit program.
+"""
 def action_quit(app):
   exit()
 
+"""
+Creates a dictionary to generate menu that accepts user input. 
+"""
 ACTIONS = {
   'A': action_load_student_csv,
   'B': action_list_all_students,
@@ -40,6 +58,11 @@ ACTIONS = {
   'Q': action_quit
 }
 
+"""
+Presents a menu for user. 
+If input incorrect program returns
+an exception.
+"""
 def getAction():
   while True:
     print("A) Load Students from CSV")
@@ -55,6 +78,9 @@ def getAction():
     else:
       return action
 
+"""
+Returns Data based on user input.
+"""
 def main():
   app = Application()
 
@@ -64,6 +90,7 @@ def main():
     print()
     action(app)
     print()
+
 
 if __name__ == '__main__':
   main()
