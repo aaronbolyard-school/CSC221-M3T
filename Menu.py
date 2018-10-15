@@ -6,34 +6,64 @@ Created on Mon Oct  8 13:06:22 2018
 Aaron Bolyard
 Grace Rowse
 """
+
+import File
+
+class Application:
+  def __init__(self):
+    self.students = None
+
+def action_load_student_csv(app):
+  try:
+    filename = input("Enter a filename: ")
+    app.students = File.readCSV(filename)
+  except Exception as e:
+    print("Couldn't load students:", e)
+
+def action_list_all_students(app):
+  if not app.students:
+    print("Please load the students CSV first.")
+  else:
+    for student in app.students:
+      print(student)
+
+def action_list_programs(app):
+  pass
+
+def action_quit(app):
+  exit()
+
+ACTIONS = {
+  'A': action_load_student_csv,
+  'B': action_list_all_students,
+  'C': action_list_programs,
+  'Q': action_quit
+}
+
+def getAction():
+  while True:
+    print("A) Load Students from CSV")
+    print("B) List All Students")
+    print("C) List Students by Program")
+    print("Q) Quit")
+
+    userInput = input("Enter action: ").upper()
+    action = ACTIONS.get(userInput, None)
+
+    if action == None:
+      print("Please enter a valid option.")
+    else:
+      return action
+
 def main():
-   search = input('Do you want to perform a data search? Y or N?')
-    #gpaSearch = input('Do you want to display by student GPA? Y or N') 
-    #programSearch = input('Do you want to display by start date?')
-   start = input('Press A + enter to search by name or B + enter to search by Last name')
-    
-   if search == 'Y':
-       start()
-   elif search == 'N':
-       print('Goodbye')
-   else:
-       print('Please enter a valid option')
+  app = Application()
 
-   if start =='A':
-       print('x')
-   if start == 'B':
-        print('y')
-   else:
-       print('Please enter a valid option')
+  while True:
+    action = getAction()
 
-main()
-        
-   
-    
-        
-    
+    print()
+    action(app)
+    print()
 
-            
-            
-        
-        
+if __name__ == '__main__':
+  main()
