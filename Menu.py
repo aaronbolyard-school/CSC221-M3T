@@ -4,7 +4,7 @@ Created on Mon Oct  8 13:06:22 2018
 
 @author: n_zwan
 Aaron Bolyard
-Grace Rowse
+Grace Ross
 """
 
 import File
@@ -28,7 +28,13 @@ def action_list_all_students(app):
       print(student)
 
 def action_list_programs(app):
-  pass
+  if not app.students:
+    print("Please load the students CSV first.")
+  else:
+    programCode = input("Enter program code: ").upper()
+    for student in app.students:
+      if student.program == programCode:
+        print(student)
 
 def action_quit(app):
   exit()
